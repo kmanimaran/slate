@@ -436,10 +436,10 @@ Remember — make sure to pass a valid apiKey parameter!
 <h1 id="people">People</h1>
 
 <h2 id="get-true-id">Get True Id</h2>
-<pre class="highlight shell"><code>https://welink.com/api/v3/getTrueId.jsp?username<span class="o">=</span>@karthiknm
-https://welink.com/api/v3/getTrueId.jsp?username<span class="o">=</span>karthikmanimaran@gmail.com
-https://welink.com/api/v3/getTrueId.jsp?username<span class="o">=</span><span class="k">in</span>/karthikmanimaran
-https://welink.com/api/v3/getTrueId.jsp?username<span class="o">=</span>Karthik%20Manimaran
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getTrueId.jsp?username=@karthiknm"</span>
+curl <span class="s2">"https://welink.com/api/v3/getTrueId.jsp?username=karthikmanimaran@gmail.com"</span>
+curl <span class="s2">"https://welink.com/api/v3/getTrueId.jsp?username=in/karthikmanimaran"</span>
+curl <span class="s2">"https://welink.com/api/v3/getTrueId.jsp?username=Karthik%20Manimaran"</span>
 </code></pre>
 
 <blockquote>
@@ -805,7 +805,7 @@ https://welink.com/api/v3/getTrueId.jsp?username<span class="o">=</span>Karthik%
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint provides True Id information on a username if a social media handle or email is passed or returns a list of matched users if a full name is passed. </p>
 
 <h3 id="https-request">HTTPS Request</h3>
 
@@ -833,42 +833,47 @@ https://welink.com/api/v3/getTrueId.jsp?username<span class="o">=</span>Karthik%
 Remember — Any value for username parameter that doesn&rsquo;t follow the formatting for social media usernames or email will be treated as a full name. 
 </aside>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
--H <span class="s2">"Authorization: meowmeowmeow"</span>
+<h1 id="monitors">Monitors</h1>
+
+<h2 id="get-monitor-property">Get Monitor Property</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getMonitorProperty.jsp?mid=XT3P&amp;property=name"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-</span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p>This endpoint retrieves a specific monitor property.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<h3 id="https-request">HTTPS Request</h3>
 
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET https://welink.com/api/v3/getMonitorProperty.jsp</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>mid</td>
+<td>true</td>
+<td></td>
+<td>The Monitor ID</td>
+</tr>
+<tr>
+<td>property</td>
+<td>true</td>
+<td></td>
+<td>Property name</td>
 </tr>
 </tbody></table>
 
