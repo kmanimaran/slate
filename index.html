@@ -835,6 +835,488 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 
 <h1 id="monitors">Monitors</h1>
 
+<h2 id="get-user-monitors">Get User Monitors</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getUserMonitors.jsp?email=youremail"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"monitors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XT3P"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Jose"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the list of monitors saved by a user for ongoing recording on data.</p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getUserMonitors.jsp</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>true</td>
+<td></td>
+<td>Email address of the user used as WeLink login</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-monitor-data">Get Monitor Data</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getMonitorData.jsp?mid=XT3P&amp;page_size=1&amp;page_number=0"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">39488</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"feed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"created_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1474930472"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"usercounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"followed_by"</span><span class="p">:</span><span class="w"> </span><span class="mi">274</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"follows"</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/14448382_1832453510323438_170103747421143040_n.jpg?ig_cache_key=MTM0ODEzNjk3NjI2ODQ3NzQwMg%3D%3D.2.c"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"low_resolution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/e35/p320x320/14448382_1832453510323438_170103747421143040_n.jpg?ig_cache_key=MTM0ODEzNjk3NjI2ODQ3NzQwMg%3D%3D.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">399</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"standard_resolution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/sh0.08/e35/p640x640/14448382_1832453510323438_170103747421143040_n.jpg?ig_cache_key=MTM0ODEzNjk3NjI2ODQ3NzQwMg%3D%3D.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">799</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"users_in_photo"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"user_has_liked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.instagram.com/p/BK1i2_rDUPa/"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"caption"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"created_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1474930472"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tiffany Moton, Realtor"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-19/s150x150/12407379_844558345667143_1945689216_a.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"229418301"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mrs._moton"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Birthday selfie! #opera #nyc #birthdayweekend #birthday #opera"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17842686682173214"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"opera"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"nyc"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"birthday"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"birthdayweekend"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amaro"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"senti"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"probability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"neg"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4495474195582838</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5504525804417162</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"neutral"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4635933638418654</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pos"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.758426865996</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marriott Marquis, Times Square, New York City"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">450195283</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-73.985128622084</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1348136976268477402_229418301"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tiffany Moton, Realtor"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-19/s150x150/12407379_844558345667143_1945689216_a.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"229418301"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mrs._moton"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"likes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IN"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9223370561924303807"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"created_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1474921207"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"usercounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"followed_by"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"follows"</span><span class="p">:</span><span class="w"> </span><span class="mi">631</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="mi">263</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14334279_259932504401753_2953952118186180608_n.jpg?ig_cache_key=MTM0ODA1OTI1NjIxODEyNTkzMg%3D%3D.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"low_resolution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/s320x320/e35/14334279_259932504401753_2953952118186180608_n.jpg?ig_cache_key=MTM0ODA1OTI1NjIxODEyNTkzMg%3D%3D.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"standard_resolution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/14334279_259932504401753_2953952118186180608_n.jpg?ig_cache_key=MTM0ODA1OTI1NjIxODEyNTkzMg%3D%3D.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"users_in_photo"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"user_has_liked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.instagram.com/p/BK1RMBPDwZs/"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"caption"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"created_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1474921207"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hattie Mae"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-19/s150x150/14310804_500918860113150_1549309394_a.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2870562426"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"midtownmanhattie"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Every day, passersby remark about my uncanny resemblance to Sandy (the dog from Annie🐾). The likeness was even obvious to an intoxicated lady (whose vision was likely impaired 🍷) this weekend. Of course, the clause \"but Hattie Mae's cuter\" should always be included! #tomorrow #tomorrowtomorrow #iloveyatomorrow #youreonlyadayaway #annie #dogsofnyc #nycdogs #scruffy #scruffydog #scruffypuppy #scruffysquad #wheatie #wheatensofinstagram #wheatenmix #instadog #dogsofig #dogstagram #dogsofinsta #puppylife #dogoftheday #wheatenterrier #nycdog #rescuefactor #dogslife #dogsandpals #sendadogphoto #mydogiscutest #ilovemydog"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17842637014168003"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"scruffydog"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"scruffy"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wheatensofinstagram"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dogsofinsta"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"nycdogs"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"instadog"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"puppylife"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dogslife"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wheatie"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tomorrow"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dogoftheday"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dogsofnyc"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sendadogphoto"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"iloveyatomorrow"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dogsofig"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dogstagram"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"youreonlyadayaway"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tomorrowtomorrow"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dogsandpals"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"nycdog"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wheatenmix"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"annie"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ilovemydog"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"scruffypuppy"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wheatenterrier"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"rescuefactor"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"scruffysquad"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"mydogiscutest"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Normal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"senti"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"probability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"neg"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5389555436970732</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4610444563029268</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"neutral"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.09448013419971059</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neg"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.75907144988</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annie @ The Palace Theater"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">39200216</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-73.98437906336</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1348059256218125932_2870562426"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hattie Mae"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-19/s150x150/14310804_500918860113150_1549309394_a.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2870562426"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"midtownmanhattie"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"likes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IN"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9223370561933568807"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"created_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1474920622"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"usercounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"followed_by"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"follows"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.100.800.800/14334302_1598599580436870_3177139930514063360_n.jpg?ig_cache_key=MTM0ODA1NDM0MTI5MDE0NTA5OA%3D%3D.2.c"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"low_resolution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/e35/p320x320/14334302_1598599580436870_3177139930514063360_n.jpg?ig_cache_key=MTM0ODA1NDM0MTI5MDE0NTA5OA%3D%3D.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"standard_resolution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-15/sh0.08/e35/p640x640/14334302_1598599580436870_3177139930514063360_n.jpg?ig_cache_key=MTM0ODA1NDM0MTI5MDE0NTA5OA%3D%3D.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"users_in_photo"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"user_has_liked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.instagram.com/p/BK1QEf2hbVK/"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"caption"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"created_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1474920622"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beautifulminds"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-19/s150x150/14498944_626757957505246_7490473777982078976_a.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3978216585"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beautifulminds8991"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Asian Persuasion does it again. #workout #goddess #natural #yoga #bornfree #vixen #asianhot 💋❤️👗"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17852336074081144"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"vixen"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"goddess"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"yoga"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bornfree"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asianhot"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"workout"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"natural"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Normal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"senti"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"probability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"neg"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.50388089761956</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.49611910238044</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"neutral"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5414735060885097</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neutral"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.759082255752</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Los Angelos"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">285880583</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-73.9850644867</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1348054341290145098_3978216585"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beautifulminds"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent.cdninstagram.com/t51.2885-19/s150x150/14498944_626757957505246_7490473777982078976_a.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3978216585"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beautifulminds8991"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"likes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IN"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9223370561934153807"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the stored data for a saved monitor</p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getMonitorData.jsp</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mid</td>
+<td>true</td>
+<td></td>
+<td>The Monitor ID</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>optional</td>
+<td>100</td>
+<td>Page size that indicates the number of posts to return.</td>
+</tr>
+<tr>
+<td>page_number</td>
+<td>optional</td>
+<td>0</td>
+<td>Page number</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-monitor-alerts-data">Get Monitor Alerts Data</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getMonitorAlertData.jsp?mid=XT3P&amp;page_size=1&amp;page_number=0"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"feed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-26T23:12:24.000Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"defaultAudioLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"localized"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample description"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample description"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thumbnails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.ytimg.com/vi/LrjggljoX7w/default.jpg"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"high"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.ytimg.com/vi/LrjggljoX7w/hqdefault.jpg"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">360</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"medium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.ytimg.com/vi/LrjggljoX7w/mqdefault.jpg"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"channelId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UCJoFuNGTqc6pUwv0GglPpww"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"channelTitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotels USA"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"New York Hotels"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Las Angeles Hotels"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nt">"liveBroadcastContent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"senti"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"probability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"neg"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.09636782413957956</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9036321758604204</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"neutral"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8663882876382876</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neutral"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youtube#video"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"\"I_8xdZu766_FSaexEaDXTIfEWc0/ve5dYbwFME_zPCwJN4V9fNmt598\""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LrjggljoX7w"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recordingDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.7588500977</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-73.9849395752</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YT"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sentiment-Neutral"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9223370561923231807"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the stored alerts for a saved monitor</p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getMonitorAlertData.jsp</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mid</td>
+<td>true</td>
+<td></td>
+<td>The Monitor ID</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>optional</td>
+<td>100</td>
+<td>Page size that indicates the number of posts to return.</td>
+</tr>
+<tr>
+<td>page_number</td>
+<td>optional</td>
+<td>0</td>
+<td>Page number</td>
+</tr>
+</tbody></table>
+
+<p>The response is similar to the getMonitorData endpoint with the addition of the &#39;meta.reason&rsquo; field that indicates the type of alert. &#39;meta.ts&rsquo; indicates the timestamp of when the post was made. </p>
+
 <h2 id="get-monitor-property">Get Monitor Property</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getMonitorProperty.jsp?mid=XT3P&amp;property=name"</span>
 </code></pre>
