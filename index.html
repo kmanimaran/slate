@@ -145,9 +145,9 @@ curl <span class="s2">"https://welink.com/api/v3/endpoint?apiKey=XXXX"</span>
 You must replace <code>XXXX</code> with your personal API key.
 </aside>
 
-<h1 id="locations">Locations</h1>
+<h1 id="live-data">Live Data</h1>
 
-<h2 id="get-live-location-data">Get Live Location Data</h2>
+<h2 id="get-live-social-data-locations-people-amp-keywords">Get Live Social Data (Locations, People &amp; Keywords)</h2>
 <pre class="highlight shell"><code>https://welink.com/api/v3/getLiveData.jsp?source<span class="o">=</span>TWITTER
 &amp;locations<span class="o">=</span>C:40.758899:-73.9873197:100
 &amp;username<span class="o">=</span>
@@ -432,8 +432,6 @@ You must replace <code>XXXX</code> with your personal API key.
 <aside class="warning">
 Remember — make sure to pass a valid apiKey parameter!
 </aside>
-
-<h1 id="people">People</h1>
 
 <h2 id="get-true-id">Get True Id</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getTrueId.jsp?username=@karthiknm"</span>
@@ -833,10 +831,310 @@ curl <span class="s2">"https://welink.com/api/v3/getTrueId.jsp?username=Karthik%
 Remember — Any value for username parameter that doesn&rsquo;t follow the formatting for social media usernames or email will be treated as a full name. 
 </aside>
 
-<h1 id="monitors">Monitors</h1>
+<h2 id="get-twitter-followers">Get Twitter Followers</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getTwitterFollowers.jsp?username=@karthiknm"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthiknm"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"nextCursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1513293019524169823"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prevCursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zibtek"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2885582418"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zibtek"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/553666885384810496/Ma7yz_Vt_normal.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VanillaMatt"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"770717691422318593"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matt Brisson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/770724119616692225/bf1ejfCj_normal.jpg"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint provides information on followers of a Twitter username. </p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getTwitterFollowers.jsp</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>true</td>
+<td></td>
+<td>@username or username</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-twitter-following">Get Twitter Following</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getTwitterFollowing.jsp?username=@karthiknm"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthiknm"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"nextCursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1479200129850863873"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prevCursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"smuddu"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"254426733"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Muddu Sudhakar"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/1518432131/muddu_photo-scaled-down-2_normal.jpg"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mattsmithHKG"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3189489414"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matthew Smith"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/597406212536209408/2Cs-E1P-_normal.jpg"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint provides information on users followed by a Twitter username. </p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getTwitterFollowing.jsp</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>true</td>
+<td></td>
+<td>@username or username</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-user-interactions">Get User Interactions</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getUserInteractions.jsp?username1=@karthiknm&amp;username2=@welinkinc"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"in_reply_to_status_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"691081086902775808"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">691081086902775800</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sun Jan 24 02:30:48 +0000 2016"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_user_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1081"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TweetDeck&lt;/a&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retweet_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retweeted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"geo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"davemcclure"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_quote_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"senti"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"probability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"neg"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7857305202730775</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2142694797269224</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"neutral"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3396152001348831</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"691085712054099969"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1081</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"favorite_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">691085712054100000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"here's why we applied to YC despite having gone through another accelerator @WeLinkinc - https://t.co/aKtICclATo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"place"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"favorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"possibly_sensitive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"truncated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"display_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bit.ly/1ZOhfG1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="mi">117</span><span class="p">,</span><span class="w">
+              </span><span class="mi">140</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"expanded_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://bit.ly/1ZOhfG1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/aKtICclATo"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"hashtags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"user_mentions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="mi">13</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"davemcclure"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1081"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dave McClure"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1081</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="mi">14</span><span class="p">,</span><span class="w">
+              </span><span class="mi">26</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500Startups"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"168857946"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500 Startups"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">168857946</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="mi">103</span><span class="p">,</span><span class="w">
+              </span><span class="mi">113</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WeLinkinc"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"492660985"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WeLink"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">492660985</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"contributors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"utc_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-25200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"friends_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1125</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_images/745020043969331200/DUH4AVzk_normal.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"listed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://abs.twimg.com/images/themes/theme15/bg.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_profile_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"favourites_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Entrepreneur, Founder - WeLink (https://t.co/PDHCRDxjiE)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue Mar 10 22:04:03 +0000 2009"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_translator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://abs.twimg.com/images/themes/theme15/bg.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"protected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthiknm"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23667159"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_link_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0084B4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_translation_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23667159</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geo_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"022330"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"has_extended_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_sidebar_border_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A8C7F7"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"333333"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/745020043969331200/DUH4AVzk_normal.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/qRSewL6PaP"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contributors_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_tile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"display_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"welink.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="mi">32</span><span class="p">,</span><span class="w">
+                  </span><span class="mi">55</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"expanded_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://welink.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/PDHCRDxjiE"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"display_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthikmanimaran.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="mi">23</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"expanded_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://karthikmanimaran.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/qRSewL6PaP"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"statuses_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1591</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"follow_request_sent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"followers_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1276</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_use_background_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"following"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karthik Manimaran"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"California, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_sidebar_fill_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C0DFEC"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint provides common conversation between two usernames. </p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getUserInteractions.jsp</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username1</td>
+<td>true</td>
+<td></td>
+<td>@username or username</td>
+</tr>
+<tr>
+<td>username2</td>
+<td>true</td>
+<td></td>
+<td>@username or username</td>
+</tr>
+</tbody></table>
+
+<h1 id="saved-data-monitors">Saved Data (Monitors)</h1>
 
 <h2 id="get-user-monitors">Get User Monitors</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getUserMonitors.jsp?email=youremail"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getTwitterFollowers.jsp?email=youremail"</span>
 </code></pre>
 
 <blockquote>
