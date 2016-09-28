@@ -147,11 +147,9 @@ You must replace <code>XXXX</code> with your personal API key.
 
 <h1 id="live-data">Live Data</h1>
 
-<h2 id="get-live-social-data-locations-people-amp-keywords">Get Live Social Data (Locations, People &amp; Keywords)</h2>
-<pre class="highlight shell"><code>https://welink.com/api/v3/getLiveData.jsp?source<span class="o">=</span>TWITTER
+<h2 id="get-data-by-locations">Get Data By Locations</h2>
+<pre class="highlight shell"><code>https://welink.com/api/v3/getDataByLocations.jsp?source<span class="o">=</span>TWITTER
 &amp;locations<span class="o">=</span>C:40.758899:-73.9873197:100
-&amp;username<span class="o">=</span>
-&amp;keyword<span class="o">=</span>
 &amp;filter_from<span class="o">=</span>
 &amp;filter_to<span class="o">=</span>
 &amp;filter_keyword<span class="o">=</span>
@@ -163,7 +161,6 @@ You must replace <code>XXXX</code> with your personal API key.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">  
-    </span><span class="nt">"params"</span><span class="p">:</span><span class="s2">"1,,TWITTER,C:40.758899:-73.9873197:100,,,1,0,,"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"TWITTER"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">  
         </span><span class="p">{</span><span class="w">  
@@ -354,14 +351,13 @@ You must replace <code>XXXX</code> with your personal API key.
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-
 </span></code></pre>
 
 <p>This endpoint retrieves the most recent social media posts from either locations or people (social media usernames or full name) or keywords</p>
 
 <h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">GET https://welink.com/api/v3/getLiveData.jsp</code></p>
+<p><code class="prettyprint">GET https://welink.com/api/v3/getDataByLocations.jsp</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -381,21 +377,9 @@ You must replace <code>XXXX</code> with your personal API key.
 </tr>
 <tr>
 <td>locations</td>
-<td>optional</td>
+<td>true</td>
 <td></td>
 <td>Comma separated value of locations. Each location can be a circle or a rectangle or a polygon. Multiple locations are separated by &rsquo;,&rsquo;. Each location is represented as follows: Circular locations are represented as &lsquo;C:latitude:longitude:radius (in meters)&rsquo;. For e.g. C:C:40.758899:-73.9873197:100. Rectangular locations are represented as &#39;R:&lt;South west point latitude&gt;:&lt;South west point longitude&gt;:&lt;North east point latitude&gt;:&lt;North east point longitude&rsquo;&gt;. Polygons are represented as &#39;P:&lt;Point 1 latitude&gt;:&lt;Point 1 longitude&gt;:&lt;Point x latitude:Point x longitude&gt;&rsquo;.</td>
-</tr>
-<tr>
-<td>username</td>
-<td>optional</td>
-<td></td>
-<td>Returns data based on social handle or Full name. Supports twitter handles, instagram handles, Full names and email addresses. Format for twitter is @username. Format for instagram is in/username. Results are applied only to one of location or username or keyword parameters if multiple parameter values are present. locations parameter takes precedence over username in that case.</td>
-</tr>
-<tr>
-<td>keyword</td>
-<td>optional</td>
-<td></td>
-<td>Returns data based on keywords from all over the globe. Results are applied only to one of location or username or keyword parameters if multiple parameter values are present. locations and username parameter takes precedence over keyword.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -432,6 +416,477 @@ You must replace <code>XXXX</code> with your personal API key.
 <aside class="warning">
 Remember — make sure to pass a valid apiKey parameter!
 </aside>
+
+<h2 id="get-data-by-username-people">Get Data By Username (People)</h2>
+<pre class="highlight shell"><code>https://welink.com/api/v3/getDataByUsername.jsp?source<span class="o">=</span>TWITTER
+&amp;username<span class="o">=</span>@karthiknm
+&amp;filter_from<span class="o">=</span>
+&amp;filter_to<span class="o">=</span>
+&amp;filter_keyword<span class="o">=</span>
+&amp;limit<span class="o">=</span>1
+&amp;offset<span class="o">=</span>0
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TWITTER"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"in_reply_to_status_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"705518622815301632"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">705518622815301600</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu Jul 14 04:55:49 +0000 2016"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"truncated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_user_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23667159"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WeLink Social&lt;/a&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retweet_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retweeted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"geo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthiknm"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_quote_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"hashtags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"user_mentions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="mi">0</span><span class="p">,</span><span class="w">
+              </span><span class="mi">10</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthiknm"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23667159"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karthik Manimaran"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23667159</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"senti"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"probability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"neg"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5271796586362985</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4728203413637016</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"neutral"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.75019623087162</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neutral"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"753452921291939840"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23667159</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"favorite_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">753452921291939800</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@karthiknm testing"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"place"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contributors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"utc_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-25200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"friends_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1125</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_images/745020043969331200/DUH4AVzk_normal.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"listed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://abs.twimg.com/images/themes/theme15/bg.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_profile_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"favourites_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Entrepreneur, Founder - WeLink (https://t.co/PDHCRDxjiE)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue Mar 10 22:04:03 +0000 2009"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_translator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://abs.twimg.com/images/themes/theme15/bg.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"protected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthiknm"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23667159"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_link_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0084B4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_translation_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23667159</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geo_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"022330"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"has_extended_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_sidebar_border_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A8C7F7"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"333333"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/745020043969331200/DUH4AVzk_normal.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/qRSewL6PaP"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contributors_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_tile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"display_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"welink.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="mi">32</span><span class="p">,</span><span class="w">
+                  </span><span class="mi">55</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"expanded_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://welink.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/PDHCRDxjiE"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"display_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karthikmanimaran.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="mi">23</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"expanded_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://karthikmanimaran.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/qRSewL6PaP"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"statuses_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1591</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"follow_request_sent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"followers_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1276</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_use_background_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"following"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karthik Manimaran"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"California, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_sidebar_fill_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C0DFEC"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"favorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the most recent social media posts from either locations or people (social media usernames or full name) or keywords</p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getDataByUsername.jsp</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source</td>
+<td>true</td>
+<td></td>
+<td>Possible values are TWIITER, INSTAGRAM, FOURSQUARE, YOUTUBE, FLICKR, VK, WEIBO, EVENTBRITE</td>
+</tr>
+<tr>
+<td>username</td>
+<td>true</td>
+<td></td>
+<td>Returns data based on social handle or Full name. Supports twitter handles, instagram handles, Full names and email addresses. Format for twitter is @username. Format for instagram is in/username.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>optional</td>
+<td>100</td>
+<td>Number of posts to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>optional</td>
+<td></td>
+<td>Offset from where to return the posts. offset is an absolute number and does not denote page number.</td>
+</tr>
+<tr>
+<td>filter_from</td>
+<td>optional</td>
+<td></td>
+<td>Start date of filter. Format MM/DD/YYYY.</td>
+</tr>
+<tr>
+<td>filter_to</td>
+<td>optional</td>
+<td></td>
+<td>End date of filter. Format MM/DD/YYYY.</td>
+</tr>
+<tr>
+<td>filter_keyword</td>
+<td>optional</td>
+<td></td>
+<td>Keywords to filter the results on.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-data-by-keyword">Get Data By Keyword</h2>
+<pre class="highlight shell"><code>https://welink.com/api/v3/getDataByKeyword.jsp?source<span class="o">=</span>TWITTER
+&amp;keyword<span class="o">=</span>pizza
+&amp;filter_from<span class="o">=</span>
+&amp;filter_to<span class="o">=</span>
+&amp;filter_keyword<span class="o">=</span>
+&amp;limit<span class="o">=</span>1
+&amp;offset<span class="o">=</span>0
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TWITTER"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"result_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recent"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"iso_language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"in_reply_to_status_id_str"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_status_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wed Sep 28 21:56:17 +0000 2016"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_user_id_str"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter Web Client&lt;/a&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retweeted_status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"result_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recent"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"iso_language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"in_reply_to_status_id_str"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"in_reply_to_status_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon Sep 05 22:10:54 +0000 2016"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"truncated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"in_reply_to_user_id_str"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter for iPhone&lt;/a&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"retweet_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">498</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"retweeted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"in_reply_to_screen_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_quote_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="nt">"hashtags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="nt">"user_mentions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="nt">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772919965745868801"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"in_reply_to_user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"favorite_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">529</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">772919965745868800</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I want pizza n hot wings sos"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"place"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contributors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"utc_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-21600</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"friends_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">486</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_images/781232867061870592/cUlUpCpQ_normal.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"listed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_background_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_background_images/378800000084918089/926dab0bf62019161131eaf513607c5a.jpeg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"default_profile_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"favourites_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">81636</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sun Sep 29 14:37:58 +0000 2013"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"is_translator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_background_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_background_images/378800000084918089/926dab0bf62019161131eaf513607c5a.jpeg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"protected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LUClDITY"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1917257256"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_link_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EBB3E7"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"is_translation_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1917257256</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"geo_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EDBEEB"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"has_extended_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_sidebar_border_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FFFFFF"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"333333"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/781232867061870592/cUlUpCpQ_normal.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mountain Time (US &amp; Canada)"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/Ma2thbc2UK"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"contributors_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_background_tile"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_banner_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_banners/1917257256/1475006632"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"display_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Instagram.com/luc.dity"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">23</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"expanded_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://Instagram.com/luc.dity"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://t.co/Ma2thbc2UK"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"statuses_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">12120</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"follow_request_sent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"followers_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">136499</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_use_background_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"default_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"following"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ray"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ur local music festival"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"profile_sidebar_fill_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DDEEF6"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"favorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"retweet_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">498</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retweeted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"geo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_screen_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_quote_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"senti"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"probability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"neg"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5279744280640943</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4720255719359057</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"neutral"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.09291830790221102</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"781251207138607104"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"in_reply_to_user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"favorite_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">781251207138607100</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RT @LUClDITY: I want pizza n hot wings sos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"place"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"favorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"truncated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"hashtags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"user_mentions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="mi">3</span><span class="p">,</span><span class="w">
+              </span><span class="mi">12</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LUClDITY"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1917257256"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ray"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1917257256</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"contributors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"utc_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-25200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"friends_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">792</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_images/766078397852286976/2hhNEJhO_normal.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"listed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://abs.twimg.com/images/themes/theme1/bg.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_profile_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"favourites_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3314</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fri Jun 10 05:27:34 +0000 2016"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_translator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_image_url_https"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://abs.twimg.com/images/themes/theme1/bg.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"protected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"screen_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aspin_Mai"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"741139723515760640"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_link_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7FDBB6"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_translation_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">741139723515760600</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geo_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"has_extended_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_sidebar_border_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://pbs.twimg.com/profile_images/766078397852286976/2hhNEJhO_normal.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contributors_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_background_tile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_banner_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_banners/741139723515760640/1471482285"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"statuses_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">574</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"follow_request_sent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"followers_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">271</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_use_background_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_profile"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"following"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">";-;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_sidebar_fill_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the most recent social media posts from either locations or people (social media usernames or full name) or keywords</p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://welink.com/api/v3/getDataByKeyword.jsp</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source</td>
+<td>true</td>
+<td></td>
+<td>Possible values are TWIITER, INSTAGRAM, FOURSQUARE, YOUTUBE, FLICKR, VK, WEIBO, EVENTBRITE</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>true</td>
+<td></td>
+<td>Returns data based on keywords from all over the globe.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>optional</td>
+<td>100</td>
+<td>Number of posts to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>optional</td>
+<td></td>
+<td>Offset from where to return the posts. offset is an absolute number and does not denote page number.</td>
+</tr>
+<tr>
+<td>filter_from</td>
+<td>optional</td>
+<td></td>
+<td>Start date of filter. Format MM/DD/YYYY.</td>
+</tr>
+<tr>
+<td>filter_to</td>
+<td>optional</td>
+<td></td>
+<td>End date of filter. Format MM/DD/YYYY.</td>
+</tr>
+<tr>
+<td>filter_keyword</td>
+<td>optional</td>
+<td></td>
+<td>Keywords to filter the results on.</td>
+</tr>
+</tbody></table>
 
 <h2 id="get-true-id">Get True Id</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getTrueId.jsp?username=@karthiknm"</span>
@@ -1463,7 +1918,7 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>mid</td>
 <td>true</td>
 <td></td>
-<td>The Monitor ID</td>
+<td>Monitor ID.</td>
 </tr>
 <tr>
 <td>page_size</td>
@@ -1475,7 +1930,271 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>page_number</td>
 <td>optional</td>
 <td>0</td>
-<td>Page number</td>
+<td>Page number.</td>
+</tr>
+<tr>
+<td>filter_query</td>
+<td>optional</td>
+<td></td>
+<td>Query to filter the data.</td>
+</tr>
+<tr>
+<td>facets</td>
+<td>optional</td>
+<td>N</td>
+<td>If set to Y, the endpoint will return facets for the queried data based on the value of facet_query parameter</td>
+</tr>
+<tr>
+<td>facet_query</td>
+<td>optional</td>
+<td>F_STATS</td>
+<td>Controls which fields are returned for the queried data. More details in the table below.</td>
+</tr>
+</tbody></table>
+
+<h3 id="facet_query-parameter-values">facet_query parameter values</h3>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Returned facet fields</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>F_STATS</td>
+<td>c_total</td>
+<td>Total count of activities</td>
+</tr>
+<tr>
+<td></td>
+<td>c_pos</td>
+<td>Count of positive posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_neg</td>
+<td>Count of negative posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_neutral</td>
+<td>Count of neutral posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_TWpos</td>
+<td>Count of positive twitter posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_TWneg</td>
+<td>Count of negative twitter posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_TWneutral</td>
+<td>Count of neutral twitter posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_INpos</td>
+<td>Count of positive instagram posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_INneg</td>
+<td>Count of negative instagram posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_INneutral</td>
+<td>Count of neutral instagram posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_FBpos</td>
+<td>Count of positive facebook posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_FBneg</td>
+<td>Count of negative facebook posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_FBneutral</td>
+<td>Count of neutral facebook posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_4Spos</td>
+<td>Count of positive foursquare posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_4Sneg</td>
+<td>Count of negative foursquare posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_4Sneutral</td>
+<td>Count of neutral foursquare posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_YTpos</td>
+<td>Count of positive youtube posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_YTneg</td>
+<td>Count of negative youtube posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_YTneutral</td>
+<td>Count of neutral youtube posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_FLpos</td>
+<td>Count of positive flickr posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_FLneg</td>
+<td>Count of negative flickr posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_FLneutral</td>
+<td>Count of neutral flickr posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_PXpos</td>
+<td>Count of positive 500px posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_PXneg</td>
+<td>Count of negative 500px posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_PXneutral</td>
+<td>Count of neutral 500px posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_VKpos</td>
+<td>Count of positive vkontakte posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_VKneg</td>
+<td>Count of negative vkontakte posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_VKneutral</td>
+<td>Count of neutral vkontakte posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_WBpos</td>
+<td>Count of positive weibo posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_WBneg</td>
+<td>Count of negative weibo posts</td>
+</tr>
+<tr>
+<td></td>
+<td>c_WBneutral</td>
+<td>Count of neutral weibo posts</td>
+</tr>
+<tr>
+<td>F_DEMOGRAPHICS</td>
+<td>s_country</td>
+<td>Country</td>
+</tr>
+<tr>
+<td></td>
+<td>s_timezone</td>
+<td>Timezone</td>
+</tr>
+<tr>
+<td></td>
+<td>s_lang</td>
+<td>Language</td>
+</tr>
+<tr>
+<td></td>
+<td>s_place</td>
+<td>Place</td>
+</tr>
+<tr>
+<td>F_CONTENT_TAGS</td>
+<td>sm_hashtags</td>
+<td>Top Hashtags</td>
+</tr>
+<tr>
+<td>F_TW_FOLLOWERS</td>
+<td>s_followers</td>
+<td>Top Twitter Influencers</td>
+</tr>
+<tr>
+<td>F_TW_USERS</td>
+<td>s_TWusername</td>
+<td>Top Twitter usernames</td>
+</tr>
+<tr>
+<td></td>
+<td>sm_TWmention</td>
+<td>Top Username mentions</td>
+</tr>
+<tr>
+<td>F_TW_SHARES</td>
+<td>s_rt</td>
+<td>Top ReTweets</td>
+</tr>
+<tr>
+<td>F_IN_USERS</td>
+<td>s_INusername</td>
+<td>Top Instagram usernames</td>
+</tr>
+<tr>
+<td></td>
+<td>s_followed_by</td>
+<td>Top Instagram Influencers</td>
+</tr>
+<tr>
+<td>F_IN_SHARES</td>
+<td>s_likes</td>
+<td>Top liked photos</td>
+</tr>
+<tr>
+<td></td>
+<td>s_comments</td>
+<td>Top commented photos</td>
+</tr>
+<tr>
+<td>F_GENERAL</td>
+<td>s_source</td>
+<td>Source</td>
+</tr>
+<tr>
+<td></td>
+<td>s_influence</td>
+<td>Influence type</td>
+</tr>
+<tr>
+<td></td>
+<td>s_type</td>
+<td>Media type</td>
 </tr>
 </tbody></table>
 
@@ -1572,7 +2291,7 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>mid</td>
 <td>true</td>
 <td></td>
-<td>The Monitor ID</td>
+<td>Monitor ID.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1585,6 +2304,12 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>optional</td>
 <td></td>
 <td>Offset from where to return the alerts. offset is an absolute number and does not denote page number.</td>
+</tr>
+<tr>
+<td>filter_query</td>
+<td>optional</td>
+<td></td>
+<td>Query to filter the data.</td>
 </tr>
 </tbody></table>
 
@@ -1622,13 +2347,13 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>mid</td>
 <td>true</td>
 <td></td>
-<td>The Monitor ID</td>
+<td>Monitor ID.</td>
 </tr>
 <tr>
 <td>property</td>
 <td>true</td>
 <td></td>
-<td>Property name</td>
+<td>Name of the property.</td>
 </tr>
 </tbody></table>
 
