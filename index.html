@@ -373,7 +373,7 @@ You must replace <code>XXXX</code> with your personal API key.
 <td>source</td>
 <td>true</td>
 <td></td>
-<td>Possible values are TWIITER, INSTAGRAM, FOURSQUARE, YOUTUBE, FLICKR, VK, WEIBO, EVENTBRITE</td>
+<td>Possible values are TWITTER, INSTAGRAM, FOURSQUARE, YOUTUBE, FLICKR, FOURSQUARE, VK, WEIBO, EVENTBRITE</td>
 </tr>
 <tr>
 <td>locations</td>
@@ -575,7 +575,7 @@ Remember — make sure to pass a valid apiKey parameter!
 <td>source</td>
 <td>true</td>
 <td></td>
-<td>Possible values are TWIITER, INSTAGRAM, FOURSQUARE, YOUTUBE, FLICKR, VK, WEIBO, EVENTBRITE</td>
+<td>Possible values are TWITTER, INSTAGRAM, YOUTUBE, PICASAWEB</td>
 </tr>
 <tr>
 <td>username</td>
@@ -848,7 +848,7 @@ Remember — make sure to pass a valid apiKey parameter!
 <td>source</td>
 <td>true</td>
 <td></td>
-<td>Possible values are TWIITER, INSTAGRAM, FOURSQUARE, YOUTUBE, FLICKR, VK, WEIBO, EVENTBRITE</td>
+<td>Possible values are TWITTER, INSTAGRAM, YOUTUBE, FLICKR, VK, PX500, EVENTBRITE</td>
 </tr>
 <tr>
 <td>keyword</td>
@@ -1936,7 +1936,7 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>filter_query</td>
 <td>optional</td>
 <td></td>
-<td>Query to filter the data.</td>
+<td>Query to filter the data. filter query is a string of multiple filter parameters separated by space. More details and examples in the table below.</td>
 </tr>
 <tr>
 <td>facets</td>
@@ -1951,6 +1951,50 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>Controls which fields are returned for the queried data. More details in the table below.</td>
 </tr>
 </tbody></table>
+
+<h3 id="filter_query-parameter-values">filter_query parameter values</h3>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>+content:&lt;value&gt;</td>
+<td>Filter based on keywords. Eg. +content:pizza. When a phrase is used it should be enclosed in double quotes. Eg. +content:&ldquo;fresh pizza&rdquo;</td>
+</tr>
+<tr>
+<td>+dt_posted:[&lt;from date&gt; TO &lt;to date&gt;]</td>
+<td>Filter based on dates and time. Format for date is YYYY-MM&ndash;DDTHH:MM:SSZ. Eg. +dt_posted:[2016-09-13T22:53:55Z TO 2016-09-30T22:53:57Z]</td>
+</tr>
+<tr>
+<td>+source:(value)</td>
+<td>Filter based on source shortcodes. Eg. +s_source:(TW). If filter needs to be applied on multiple sources they should be separated by &#39;OR&rsquo;. Eg. +s_source(TW OR IN). The short codes for the different sources are as follows: TW - Twitter, IN - Instagram, FB - Facebook, YT - Youtube, FL - Flickr, 4S - Foursquare, PX - 500px, VK - VKontakte, WB - Weibo.</td>
+</tr>
+<tr>
+<td>+s_media:(&lt;value&gt;)</td>
+<td>Filter based on whether the post is an image or video. Eg. +s_media:(image) - returns only photos. +s_media:(image or video) - returns both photos and videos</td>
+</tr>
+<tr>
+<td>+c_neg:1</td>
+<td>Filter only negative posts</td>
+</tr>
+<tr>
+<td>+c_pos:1</td>
+<td>Filter only positive posts</td>
+</tr>
+<tr>
+<td>+c_neutral:1</td>
+<td>Filter only neutral posts</td>
+</tr>
+<tr>
+<td>+bloc:true</td>
+<td>Filter only posts that contain geo-tags</td>
+</tr>
+</tbody></table>
+
+<p>Multiple filters are separated by spaces. Eg. +content:pizza +dt_posted:[2016-09-13T22:53:55Z TO 2016-09-30T22:53:57Z] +s_source:(TW OR IN) +s_media:(image OR video) +(c_neg:1) +(b_loc:true)</p>
 
 <h3 id="facet_query-parameter-values">facet_query parameter values</h3>
 
@@ -2267,7 +2311,7 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
         </span><span class="nt">"ts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9223370561923231807"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2309,11 +2353,12 @@ Remember — Any value for username parameter that doesn&rsquo;t follow the form
 <td>filter_query</td>
 <td>optional</td>
 <td></td>
-<td>Query to filter the data.</td>
+<td>Query to filter the data. Same as how filter_query works for &ldquo;Get Monitor Data&rdquo; endpoint above.</td>
 </tr>
 </tbody></table>
 
-<p>The response is similar to the getMonitorData endpoint with the addition of the &#39;meta.reason&rsquo; field that indicates the type of alert. &#39;meta.ts&rsquo; indicates the timestamp of when the post was made. </p>
+<p>The response is similar to the getMonitorData endpoint with the addition of the &#39;meta.reason&rsquo; field that indicates the type of alert. &#39;meta.ts&rsquo; indicates the timestamp of when the post was made. 
+Keyword and Sentiment alerts are applicable for all sources. Influencer alerts are applicable only to Twitter and Instagram right now. </p>
 
 <h2 id="get-monitor-property">Get Monitor Property</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://welink.com/api/v3/getMonitorProperty.jsp?mid=XT3P&amp;property=name"</span>
